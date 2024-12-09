@@ -1,0 +1,24 @@
+{
+	"name": "betr-pingandwake",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"format": "prettier --write ."
+	},
+	"license": "MIT",
+	"dependencies": {
+		"@companion-module/base": "^1.11.2",
+		"@network-utils/arp-lookup": "^2.1.0",
+		"ping": "^0.4.2",
+		"wake_on_lan": "^1.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-betr-pingandwake.git"
+	},
+	"devDependencies": {
+		"@companion-module/tools": "^2.1.0",
+		"prettier": "^3.4.2"
+	}
+}

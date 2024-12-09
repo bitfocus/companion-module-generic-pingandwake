@@ -1,0 +1,26 @@
+{
+	"id": "betr-pingandwake",
+	"name": "betr-pingandwake",
+	"shortname": "betr-pingandwake",
+	"description": "Pings a remote host, and if it is not alive, sends a Wake On LAN packet to wake it up. Can also attempt to ARP the MAC address of the host.",
+	"version": "0.0.0",
+	"license": "MIT",
+	"repository": "git+https://github.com/bitfocus/companion-module-betr-pingandwake.git",
+	"bugs": "https://github.com/bitfocus/companion-module-betr-pingandwake/issues",
+	"maintainers": [
+		{
+			"name": "Joseph Adams",
+			"email": "joseph@josephadams.dev"
+		}
+	],
+	"legacyIds": [],
+	"runtime": {
+		"type": "node18",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../index.js"
+	},
+	"manufacturer": "BETR",
+	"products": ["Ping and Wake"],
+	"keywords": ["Ping", "Wake On LAN", "ARP", "MAC"]
+}
