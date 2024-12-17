@@ -43,7 +43,7 @@ module.exports = {
 			variableObj['ping_response_time_avg'] = this.DATA.pingResponseTimeAvg
 			variableObj['ping_packet_loss'] = this.DATA.pingPacketLoss
 			variableObj['ping_last'] = this.DATA.pingLast
-			
+
 			//ARP Variables
 			variableObj['arp_last'] = this.DATA.arpLast
 			variableObj['arp_success'] = this.DATA.arpSuccess ? 'True' : 'False'

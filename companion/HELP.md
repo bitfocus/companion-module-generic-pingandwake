@@ -8,13 +8,13 @@ This module will ping a host, and if the host is not alive, send a Wake-On-LAN m
 - Host MAC Address (if known)
 - Attempt ARP Lookup of MAC Address
 - Ping Settings
-	- Timeout Rate
-	- Retry Rate (how often to re-ping)
+  - Timeout Rate
+  - Retry Rate (how often to re-ping)
 - Wake On Lan (WOL) Settings
-	- UDP Port (default is Port 9)
-	- Broadcast Address
-	- Resend Attempts
-	- Interval between Packet Resends
+  - UDP Port (default is Port 9)
+  - Broadcast Address
+  - Resend Attempts
+  - Interval between Packet Resends
 - Enable Verbose Logging
 
 ## Actions
@@ -33,18 +33,18 @@ This module will ping a host, and if the host is not alive, send a Wake-On-LAN m
 - Host IP
 - Host MAC
 - Ping Variables
-	- Host is Alive
-	- Max Ping Response Time
-	- Min Ping Response Time
-	- Avg Ping Response Time
-	- Packet Loss Percentage
-	- Last Ping Performed
+  - Host is Alive
+  - Max Ping Response Time
+  - Min Ping Response Time
+  - Avg Ping Response Time
+  - Packet Loss Percentage
+  - Last Ping Performed
 - ARP Variables
-	- Last ARP Successful
-	- Last ARP Performed
+  - Last ARP Successful
+  - Last ARP Performed
 - WOL Variables
-	- UDP Port
-	- Broadcast Address
-	- Resend Attempts
-	- Interval between Packet Resends
-	- Last WOL Sent
+  - UDP Port
+  - Broadcast Address
+  - Resend Attempts
+  - Interval between Packet Resends
+  - Last WOL Sent

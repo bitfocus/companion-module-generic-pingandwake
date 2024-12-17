@@ -24,35 +24,35 @@ module.exports = {
 
 	async sendPing() {
 		let self = this
-	
+
 		const host = self.config.ip
 		const timeout = self.config.timeout
 		const retryrate = self.config.retryrate
-	
+
 		try {
 			if (self.config.verbose) {
 				self.log('debug', 'Sending Ping to ' + host)
 			}
-	
+
 			if (retryrate == 0) {
 				self.log('info', 'Retry Rate is 0. Module will send one ping, and then stop.')
 			}
-	
+
 			let res = await ping.promise.probe(host, {
 				timeout: timeout,
 			})
-	
+
 			if (self.config.verbose) {
 				self.log('debug', 'Ping Output: ' + res.output)
 			}
-	
+
 			self.DATA.pingAlive = res.alive
 			self.DATA.pingResponseTimeMin = res.min
 			self.DATA.pingResponseTimeMax = res.max
 			self.DATA.pingResponseTimeAvg = res.avg
 			self.DATA.pingPacketLoss = res.packetLoss
 			self.DATA.pingLast = new Date()
-	
+
 			if (res.alive == true) {
 				self.updateStatus(InstanceStatus.Ok, 'Host is alive.')
 				self.log('info', 'Host is alive.')
@@ -63,10 +63,10 @@ module.exports = {
 			} else {
 				self.updateStatus(InstanceStatus.UnknownError)
 			}
-	
+
 			self.checkFeedbacks()
 			self.checkVariables()
-	
+
 			if (self.STOP_PING || retryrate == 0) {
 				clearInterval(self.PING_INTERVAL)
 				self.PING_INTERVAL = null
