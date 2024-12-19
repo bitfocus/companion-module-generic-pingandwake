@@ -23,6 +23,9 @@ module.exports = {
 			{ name: 'WOL - Resend Attempts', variableId: 'wol_resend' },
 			{ name: 'WOL - Resend Interval', variableId: 'wol_interval' },
 			{ name: 'WOL - Last Sent', variableId: 'wol_last' },
+
+			//WOL Enabled/Disabled
+			{ name: 'WOL - Enabled', variableId: 'wol_enabled' },
 		]
 
 		this.setVariableDefinitions(variables)
@@ -54,6 +57,9 @@ module.exports = {
 			variableObj['wol_resend'] = this.config.wolResend
 			variableObj['wol_interval'] = this.config.wolInterval
 			variableObj['wol_last'] = this.DATA.wolLast
+
+			//WOL Enabled/Disabled
+			variableObj['wol_enabled'] = this.WOL_ENABLED ? 'True' : 'False'
 
 			this.setVariableValues(variableObj)
 		} catch (error) {
