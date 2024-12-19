@@ -57,7 +57,7 @@ module.exports = {
 				self.updateStatus(InstanceStatus.Ok, 'Host is alive.')
 				self.log('info', 'Host is alive.')
 			} else if (res.alive == false) {
-				self.updateStatus(InstanceStatus.Disconnected, 'Host is not alive. Sending WOL Packet.')
+				self.updateStatus(InstanceStatus.Disconnected, 'Host is not alive.')
 				self.log('error', 'Host is not alive.')
 				self.sendWOL()
 			} else {
@@ -106,28 +106,33 @@ module.exports = {
 
 	async sendWOL() {
 		let self = this
-		self.log('info', 'Sending Wake-On-LAN Packet to ' + self.config.mac)
 
-		let options = {
-			port: self.config.wolPort,
-			address: self.config.wolBroadcast,
-			num_packets: self.config.wolResend,
-			interval: self.config.wolInterval,
-		}
+		if (self.WOL_ENABLED == true) {
+			self.log('info', 'Sending Wake-On-LAN Packet to ' + self.config.mac)
 
-		if (self.config.verbose) {
-			self.log('debug', 'WOL Options: ' + JSON.stringify(options))
-		}
-
-		wol.wake(self.config.mac, options, function (error) {
-			if (error) {
-				self.log('error', 'Error Sending WOL Packet: ' + error)
+			let options = {
+				port: self.config.wolPort,
+				address: self.config.wolBroadcast,
+				num_packets: self.config.wolResend,
+				interval: self.config.wolInterval,
 			}
-		})
 
-		self.DATA.wolLast = new Date()
+			if (self.config.verbose) {
+				self.log('debug', 'WOL Options: ' + JSON.stringify(options))
+			}
 
-		self.checkFeedbacks()
-		self.checkVariables()
+			wol.wake(self.config.mac, options, function (error) {
+				if (error) {
+					self.log('error', 'Error Sending WOL Packet: ' + error)
+				}
+			})
+
+			self.DATA.wolLast = new Date()
+
+			self.checkFeedbacks()
+			self.checkVariables()
+		} else {
+			self.log('info', 'Wake-On-LAN Function Disabled by Action.')
+		}
 	},
 }

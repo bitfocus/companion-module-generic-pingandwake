@@ -36,6 +36,24 @@ module.exports = {
 			},
 		}
 
+		actions.disableWOL = {
+			name: 'Disable Wake-On-LAN',
+			options: [],
+			callback: function (action, bank) {
+				self.log('info', 'Wake-On-LAN Function Disabled.')
+				self.WOL_ENABLED = false
+			},
+		}
+
+		actions.enableWOL = {
+			name: 'Enable Wake-On-LAN',
+			options: [],
+			callback: function (action, bank) {
+				self.log('info', 'Wake-On-LAN Function Enabled.')
+				self.WOL_ENABLED = true
+			},
+		}
+
 		self.setActionDefinitions(actions)
 	},
 }

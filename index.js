@@ -41,6 +41,8 @@ class BetrPingAndWakeInstance extends InstanceBase {
 
 		this.PING_INTERVAL = null
 		this.STOP_PING = false
+
+		this.WOL_ENABLED = true
 	}
 
 	async init(config) {

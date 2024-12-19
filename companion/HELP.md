@@ -23,6 +23,7 @@ This module will ping a host, and if the host is not alive, send a Wake-On-LAN m
 - Stop Ping Interval (Variables and Feedbacks will stop working also)
 - Perform ARP Now
 - Send WOL Now
+- Enable/Disable WOL Function
 
 ## Feedbacks
 
