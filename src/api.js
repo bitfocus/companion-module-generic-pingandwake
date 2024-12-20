@@ -145,7 +145,7 @@ module.exports = {
 		const forceString = force ? ' /f' : ''
 
 		const exec = require('child_process').exec
-		exec(`shutdown /s /m \\${hostname} /t ${time} ${forceString}`, function (error, stdout, stderr) {
+		exec(`shutdown /s /m \\\\${hostname} /t ${time} ${forceString}`, function (error, stdout, stderr) {
 			if (error) {
 				self.log('error', 'Error Shutting Down Windows PC: ' + error)
 			}
