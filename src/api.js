@@ -135,4 +135,20 @@ module.exports = {
 			self.log('info', 'Wake-On-LAN Function Disabled by Action.')
 		}
 	},
+
+	async shutdownWindowsPC(time = 0, force = true) {
+		let self = this
+
+		self.log('info', `Shutting Down Windows PC. Time: ${time} seconds. Force: ${force}`)
+
+		const hostname = self.config.ip
+		const forceString = force ? ' /f' : ''
+
+		const exec = require('child_process').exec
+		exec(`shutdown /s /m \\${hostname} /t ${time} ${forceString}`, function (error, stdout, stderr) {
+			if (error) {
+				self.log('error', 'Error Shutting Down Windows PC: ' + error)
+			}
+		})
+	}
 }

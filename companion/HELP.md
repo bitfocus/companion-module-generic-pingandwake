@@ -24,6 +24,7 @@ This module will ping a host, and if the host is not alive, send a Wake-On-LAN m
 - Perform ARP Now
 - Send WOL Now
 - Enable/Disable WOL Function
+- Shutdown Windows PC
 
 ## Feedbacks
 

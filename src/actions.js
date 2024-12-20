@@ -54,6 +54,32 @@ module.exports = {
 			},
 		}
 
+		actions.shutdownWindowsPC = {
+			name: 'Shutdown Windows PC',
+			options: [
+				//time in seconds to wait before shutdown
+				{
+					type: 'number',
+					label: 'Time to Wait (in seconds)',
+					id: 'time',
+					default: 0,
+				},
+				//force checkbox
+				{
+					type: 'checkbox',
+					label: 'Force Shutdown (Close All Apps)',
+					id: 'force',
+					default: true,
+				},
+
+			],
+			callback: async function (action, bank) {
+				let time = action.options.time
+				let force = action.options.force
+				self.shutdownWindowsPC(time, force)
+			},
+		}
+
 		self.setActionDefinitions(actions)
 	},
 }
