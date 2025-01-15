@@ -1,5 +1,5 @@
 {
-	"name": "betr-pingandwake",
+	"name": "generic-pingandwake",
 	"version": "1.0.0",
 	"main": "index.js",
 	"scripts": {
@@ -15,7 +15,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bitfocus/companion-module-betr-pingandwake.git"
+		"url": "git+https://github.com/bitfocus/companion-module-generic-pingandwake.git"
 	},
 	"devDependencies": {
 		"@companion-module/tools": "^2.1.0",

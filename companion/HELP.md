@@ -1,4 +1,4 @@
-# BETR Ping and Wake
+# Generic Ping and Wake
 
 This module will ping a host, and if the host is not alive, send a Wake-On-LAN magic packet to the MAC address of the host. If the MAC address is not known, it will attempt an ARP lookup first.
 

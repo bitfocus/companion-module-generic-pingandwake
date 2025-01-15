@@ -9,7 +9,7 @@ const feedbacks = require('./src/feedbacks')
 const variables = require('./src/variables')
 const presets = require('./src/presets')
 
-class BetrPingAndWakeInstance extends InstanceBase {
+class GenericPingAndWakeInstance extends InstanceBase {
 	constructor(internal) {
 		super(internal)
 
@@ -87,4 +87,4 @@ class BetrPingAndWakeInstance extends InstanceBase {
 	}
 }
 
-runEntrypoint(BetrPingAndWakeInstance, UpgradeScripts)
+runEntrypoint(GenericPingAndWakeInstance, UpgradeScripts)
