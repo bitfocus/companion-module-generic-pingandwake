@@ -80,75 +80,87 @@ module.exports = {
 
 	async performARP() {
 		let self = this
-		self.log('info', 'Performing ARP Lookup for ' + self.config.ip)
+		try {
+			self.log('info', 'Performing ARP Lookup for ' + self.config.ip)
 
-		let mac = await arp.toMAC(self.config.ip)
+			let mac = await arp.toMAC(self.config.ip)
 
-		let isMac = arp.isMAC(mac)
+			let isMac = arp.isMAC(mac)
 
-		if (isMac) {
-			//save the MAC Address into the module config
-			self.log('debug', 'Saving MAC Address to Config: ' + mac)
-			self.config.mac = mac
-			self.saveConfig(self.config)
+			if (isMac) {
+				//save the MAC Address into the module config
+				self.log('debug', 'Saving MAC Address to Config: ' + mac)
+				self.config.mac = mac
+				self.saveConfig(self.config)
 
-			self.DATA.arpSuccess = true
-		} else {
-			self.log('error', 'Invalid MAC Address Returned: ' + mac)
-			self.DATA.arpSuccess = false
+				self.DATA.arpSuccess = true
+			} else {
+				self.log('error', 'Invalid MAC Address Returned: ' + mac)
+				self.DATA.arpSuccess = false
+			}
+
+			self.DATA.arpLast = new Date()
+
+			self.checkFeedbacks()
+			self.checkVariables()
+		} catch (error) {
+			self.log('error', 'Error Performing ARP Lookup: ' + error)
 		}
-
-		self.DATA.arpLast = new Date()
-
-		self.checkFeedbacks()
-		self.checkVariables()
 	},
 
 	async sendWOL() {
 		let self = this
 
-		if (self.WOL_ENABLED == true) {
-			self.log('info', 'Sending Wake-On-LAN Packet to ' + self.config.mac)
+		try {
+			if (self.WOL_ENABLED == true) {
+				self.log('info', 'Sending Wake-On-LAN Packet to ' + self.config.mac)
 
-			let options = {
-				port: self.config.wolPort,
-				address: self.config.wolBroadcast,
-				num_packets: self.config.wolResend,
-				interval: self.config.wolInterval,
-			}
-
-			if (self.config.verbose) {
-				self.log('debug', 'WOL Options: ' + JSON.stringify(options))
-			}
-
-			wol.wake(self.config.mac, options, function (error) {
-				if (error) {
-					self.log('error', 'Error Sending WOL Packet: ' + error)
+				let options = {
+					port: self.config.wolPort,
+					address: self.config.wolBroadcast,
+					num_packets: self.config.wolResend,
+					interval: self.config.wolInterval,
 				}
-			})
 
-			self.DATA.wolLast = new Date()
+				if (self.config.verbose) {
+					self.log('debug', 'WOL Options: ' + JSON.stringify(options))
+				}
 
-			self.checkFeedbacks()
-			self.checkVariables()
-		} else {
-			self.log('info', 'Wake-On-LAN Function Disabled by Action.')
+				wol.wake(self.config.mac, options, function (error) {
+					if (error) {
+						self.log('error', 'Error Sending WOL Packet: ' + error)
+					}
+				})
+
+				self.DATA.wolLast = new Date()
+
+				self.checkFeedbacks()
+				self.checkVariables()
+			} else {
+				self.log('info', 'Wake-On-LAN Function Disabled by Action.')
+			}
+		} catch (error) {
+			self.log('error', 'Error Sending WOL Packet: ' + error)
 		}
 	},
 
 	async shutdownWindowsPC(time = 0, force = true) {
 		let self = this
 
-		self.log('info', `Shutting Down Windows PC. Time: ${time} seconds. Force: ${force}`)
+		try {
+			self.log('info', `Shutting Down Windows PC. Time: ${time} seconds. Force: ${force}`)
 
-		const hostname = self.config.ip
-		const forceString = force ? ' /f' : ''
+			const hostname = self.config.ip
+			const forceString = force ? ' /f' : ''
 
-		const exec = require('child_process').exec
-		exec(`shutdown /s /m \\\\${hostname} /t ${time} ${forceString}`, function (error, stdout, stderr) {
-			if (error) {
-				self.log('error', 'Error Shutting Down Windows PC: ' + error)
-			}
-		})
-	}
+			const exec = require('child_process').exec
+			exec(`shutdown /s /m \\\\${hostname} /t ${time} ${forceString}`, function (error, stdout, stderr) {
+				if (error) {
+					self.log('error', 'Error Shutting Down Windows PC: ' + error)
+				}
+			})
+		} catch (error) {
+			self.log('error', 'Error Shutting Down Windows PC: ' + error)
+		}
+	},
 }

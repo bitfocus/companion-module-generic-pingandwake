@@ -71,7 +71,6 @@ module.exports = {
 					id: 'force',
 					default: true,
 				},
-
 			],
 			callback: async function (action, bank) {
 				let time = action.options.time
