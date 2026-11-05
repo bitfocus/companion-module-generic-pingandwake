@@ -8,7 +8,7 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@companion-module/base": "^1.11.2",
+		"@companion-module/base": "^1.15.1",
 		"@network-utils/arp-lookup": "^2.1.0",
 		"ping": "^0.4.2",
 		"wake_on_lan": "^1.0.0"
@@ -18,7 +18,7 @@
 		"url": "git+https://github.com/bitfocus/companion-module-generic-pingandwake.git"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^2.8.0",
+		"@companion-module/tools": "^2.9.0",
 		"prettier": "^3.4.2"
 	}
 }
